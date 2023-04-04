@@ -1,34 +1,21 @@
-import Slider from "@/components/Slider";
+import Hero from "@/components/Hero";
+import PopularProducts from "@/components/PopularProducts";
+import SelectPet from "@/components/SelectPet";
+import { client } from "@/lib/sanity.client";
 
-export default function Home() {
-  const images = [
-    {
-      url: "img_1.jpg",
-      title: "What to do if your cat climbs a tree?",
-    },
-    {
-      url: "img_2.jpg",
-      title: "Beautiful Huskies to adopt!",
-    },
-    {
-      url: "img_3.jpg",
-      title: "Your kitty loves to sleep, knows why?",
-    },
-    {
-      url: "img_4.jpg",
-      title: "Most loyal dog breeds.",
-    },
-    {
-      url: "img_5.jpg",
-      title: "The top 5 playgames your puppy will love.",
-    },
-  ];
-
+export default async function Home() {
+  const products = await getData();
   return (
-    <div>
-      <section>
-        <Slider images={images} autoplay={false} />
-      </section>
-    </div>
+    <>
+      <Hero />
+      <SelectPet />
+      <PopularProducts products={products} />
+    </>
   );
+}
+
+async function getData() {
+  const query = '*[_type == "product"]';
+  const products = await client.fetch(query);
+  return products;
 }

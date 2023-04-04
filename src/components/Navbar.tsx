@@ -1,15 +1,18 @@
 import React from "react";
-import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
-import Image from "next/image";
-import logo from "../../public/logo.png";
+import { FaUserAlt } from "react-icons/fa";
+import { ImCart } from "react-icons/im";
+import { TbPawFilled } from "react-icons/tb";
+
+import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="bg-transparent sticky top-0 px-5 py-3">
-      <div className="flex items-center justify-between gap-5">
-        <div>
-          <Image src={logo} alt="" />
+    <nav className="bg-transparent sticky top-0 shadow-sm z-30">
+      <div className="flex items-center justify-between gap-5 bg-indigo-200 px-4 py-2">
+        <div className="flex items-center gap-1 text-xl">
+          <span className="font-black ">PawFriends</span>
+          <TbPawFilled className="rotate-45" />
         </div>
 
         <div className="relative flex items-center w-full lg:w-1/3">
@@ -21,17 +24,26 @@ const Navbar = () => {
           <BiSearch className="absolute left-1" />
         </div>
 
-        <div className="flex gap-2 [&>*]:cursor-pointer text-xl">
-          <FaUserCircle />
-          <FaShoppingCart />
+        <div className="flex gap-2 [&>*]:cursor-pointer text-lg">
+          <FaUserAlt />
+          <ImCart />
         </div>
       </div>
 
-      <div>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
+      <div className="flex justify-center py-3 bg-white">
+        <ul className="flex gap-7 text-sm font-semibold">
+          <li>
+            <Link href="#">Dogs</Link>
+          </li>
+          <li>
+            <Link href="#">Cats</Link>
+          </li>
+          <li>
+            <Link href="#">About</Link>
+          </li>
+          <li>
+            <Link href="#">Contact</Link>
+          </li>
         </ul>
       </div>
     </nav>

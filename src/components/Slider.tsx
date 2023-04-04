@@ -37,14 +37,14 @@ const Slider: React.FC<SliderProps> = ({ images, autoplay }: SliderProps) => {
   }, [current]);
 
   return (
-    <div className="relative max-w-[1400px] h-[600px] lg:h-[800px] w-full m-auto group px-3">
+    <div className="relative h-[600px] lg:h-[750px] w-full m-auto px-3">
       <div
         ref={imageRef}
-        style={{ backgroundImage: `url(/${images[current].url})` }}
+        style={{ backgroundImage: `url(/assets/${images[current].url})` }}
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500 flex items-end lg:justify-end pb-[60px] pl-4 lg:pr-4 relative overflow-hidden"
       >
         <div className="z-10 space-y-3">
-          <h2 className="font-black text-white text-4xl max-w-[400px]">
+          <h2 className="font-black text-white text-5xl max-w-[600px] tracking-wide">
             {images[current].title}
           </h2>
           <button className="bg-indigo-600 hover:bg-indigo-700 duration-300 rounded-md font-medium text-white py-2 px-5">
@@ -70,8 +70,8 @@ const Slider: React.FC<SliderProps> = ({ images, autoplay }: SliderProps) => {
             key={i}
             onClick={() => setCurrent(i)}
             className={`${
-              i === current ? "w-11 bg-indigo-500" : ""
-            } w-3 h-3 border-2 border-indigo-500 rounded-full transition-all`}
+              i === current ? "w-10 bg-indigo-500" : "w-3"
+            } h-3 border-2 border-indigo-500 rounded-full transition-all`}
           ></span>
         ))}
       </div>
