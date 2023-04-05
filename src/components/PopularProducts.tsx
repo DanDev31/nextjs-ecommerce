@@ -1,32 +1,25 @@
-import { client, urlFor } from "@/lib/sanity.client";
+"use client";
+import { urlFor } from "@/lib/sanity.client";
 import React from "react";
-import Slider from "./Slider";
-import Image from "next/image";
+import Product from "./Product";
+import { ProductInterface } from "@/interfaces/products";
 
 interface PopularProductsProps {
-  products?: any[];
+  products: ProductInterface[];
 }
 
 const PopularProducts = ({ products }: PopularProductsProps) => {
   return (
-    <section>
-      <h2>Popular in PawFriends</h2>
+    <section className="py-10 border-b border-gray-300">
+      <h2 className="font-bold text-xl text-center mb-7">
+        Popular in PawFriends
+      </h2>
 
-      <div className="grid grid-cols-5 gap-3">
-        {products?.map((product: any, i) => (
-          <div className="w-[200px]">
-            {/* <Image
-              src={urlFor(product.image.asset._ref).url()}
-              alt="Product image"
-            /> */}
-            <img src={urlFor(product.image.asset._ref).url()} alt="" />
-            <span>{product.name}</span>
-            <p>{product.price}</p>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-5 lg:max-w-[1200px] mx-auto">
+        {products?.slice(4, 8).map((product: any, i) => (
+          <Product key={i} {...product} />
         ))}
       </div>
-
-      <div>{/* <Slider /> */}</div>
     </section>
   );
 };
