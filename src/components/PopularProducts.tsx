@@ -11,7 +11,7 @@ interface PopularProductsProps {
 const PopularProducts = ({ products }: PopularProductsProps) => {
   return (
     <section className="py-10 border-b border-gray-300">
-      <h2 className="font-bold text-xl text-center mb-7">
+      <h2 className="font-semibold text-xl text-center mb-7">
         Popular in PawFriends
       </h2>
 

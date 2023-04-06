@@ -44,7 +44,7 @@ const Slider: React.FC<SliderProps> = ({ images, autoplay }: SliderProps) => {
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500 flex items-end lg:justify-end pb-[60px] pl-4 lg:pr-4 relative overflow-hidden"
       >
         <div className="z-10 space-y-3">
-          <h2 className="font-black text-white text-5xl max-w-[600px] tracking-wide">
+          <h2 className="font-bold text-white text-2xl lg:text-5xl max-w-[600px] tracking-wide">
             {images[current].title}
           </h2>
           <button className="bg-indigo-600 hover:bg-indigo-700 duration-300 rounded-md font-medium text-white py-2 px-5">

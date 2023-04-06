@@ -87,7 +87,7 @@ const Product = ({ _id, name, image, price }: ProductProps) => {
             )
           )}
         </div>
-        <h4 className="font-bold">{name}</h4>
+        <h4 className="font-semibold">{name}</h4>
         <span className="text-xl">$ {price}</span>
       </div>
       <button className="outline-none rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 mx-auto duration-200 w-full">

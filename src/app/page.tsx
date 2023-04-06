@@ -1,3 +1,4 @@
+import Banner from "@/components/Banner";
 import Hero from "@/components/Hero";
 import PopularProducts from "@/components/PopularProducts";
 import SelectPet from "@/components/SelectPet";
@@ -10,6 +11,7 @@ export default async function Home() {
       <Hero />
       <SelectPet />
       <PopularProducts products={products} />
+      <Banner />
     </>
   );
 }
