@@ -3,12 +3,14 @@ import { urlFor } from "@/lib/sanity.client";
 import React, { useState } from "react";
 import { HiStar, HiOutlineStar } from "react-icons/hi";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import Link from "next/link";
 
 interface ProductProps {
   _id?: string;
   name?: string;
   image?: any;
-  price?: string;
+  price?: number;
+  category?: string;
 }
 
 const starsData = [
@@ -34,7 +36,7 @@ const starsData = [
   },
 ];
 
-const Product = ({ _id, name, image, price }: ProductProps) => {
+const Product = ({ _id, name, image, price, category }: ProductProps) => {
   const [stars, setStars] = useState(starsData);
   const [favorite, setFavorite] = useState<boolean>(false);
 
@@ -59,20 +61,27 @@ const Product = ({ _id, name, image, price }: ProductProps) => {
   const handleFavorite = () => {};
 
   return (
-    <div className="overflow-hidden space-y-2 flex flex-col justify-between">
-      <div className="bg-slate-200 rounded-xl shadow-md relative">
-        <div className="absolute top-2 right-2 [&>*]:cursor-pointer [&>*]:text-lg">
-          {favorite ? (
-            <BsHeartFill
-              className="fill-pink-500"
-              onClick={() => setFavorite(false)}
-            />
-          ) : (
-            <BsHeart onClick={() => setFavorite(true)} />
-          )}
-        </div>
-        <img src={urlFor(image.asset._ref).url()} alt="" />
+    <div className="overflow-hidden space-y-2 flex flex-col justify-between h-full relative">
+      <div className="absolute top-4 right-3 [&>*]:cursor-pointer [&>*]:text-xl text-gray-600">
+        {favorite ? (
+          <BsHeartFill
+            className="fill-pink-500 z-30"
+            onClick={() => setFavorite(false)}
+          />
+        ) : (
+          <BsHeart onClick={() => setFavorite(true)} />
+        )}
       </div>
+      <Link
+        href={`/shop/${category}/${_id}`}
+        className="bg-slate-200 rounded-xl shadow-md h-full p-7"
+      >
+        <img
+          src={urlFor(image.asset._ref).url()}
+          alt="Product image"
+          className="hover:scale-[1.1] duration-200"
+        />
+      </Link>
       <div className="space-y-1">
         <div className="flex [&>*]:cursor-pointer [&>*]:text-gray-600 [&>*]:text-2xl">
           {stars.map((star, i) =>

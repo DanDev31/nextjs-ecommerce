@@ -1,7 +1,10 @@
 import Image from "next/image";
 import React from "react";
 import banner_cat from "../../public/assets/banner-cat.png";
-import banner_dog from "../../public/assets/banner-dog.png";
+
+import creditCard from "../../public/assets/credit_card.png";
+import shipping from "../../public/assets/shipping.png";
+import badge from "../../public/assets/medal.png";
 
 const Banner = () => {
   return (
@@ -26,6 +29,34 @@ const Banner = () => {
           <div className="w-[200px] lg:w-[250px] absolute top-5 lg:-top-10 right-0">
             <Image src={banner_cat} alt="" className="rounded-lg" />
           </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-8 py-7 lg:h-[200px]">
+        <div className="flex flex-col items-center gap-1 bg-slate-200 p-4 rounded-md">
+          <div className="max-w-[50px]">
+            <Image src={badge} alt="Payment" />
+          </div>
+          <p className="text-sm text-gray-500 text-center">
+            Quality and selected products for your lovely friend.
+          </p>
+        </div>
+        <div className="flex flex-col items-center gap-1 bg-slate-200 p-4 rounded-md">
+          <div className="max-w-[50px]">
+            <Image src={shipping} alt="Payment" />
+          </div>
+          <p className="text-sm text-gray-500 text-center">
+            You got free shipping in all your pruchases.
+          </p>
+        </div>
+        <div className="flex flex-col items-center gap-1 bg-slate-200 p-4 rounded-md">
+          <div className="max-w-[50px]">
+            <Image src={creditCard} alt="Payment" />
+          </div>
+
+          <p className="text-sm text-gray-500 text-center">
+            We guarantee you verified and safe payment process.
+          </p>
         </div>
       </div>
     </section>

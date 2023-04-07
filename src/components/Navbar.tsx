@@ -10,10 +10,10 @@ const Navbar = () => {
   return (
     <nav className="bg-transparent sticky top-0 shadow-sm z-30">
       <div className="flex items-center justify-between gap-5 bg-indigo-800 px-4 lg:px-10 py-4 text-white">
-        <div className="flex items-center gap-1 text-xl">
+        <Link href="/" className="flex items-center gap-1 text-xl">
           <span className="font-bold ">PawFriends</span>
           <TbPawFilled className="rotate-45" />
-        </div>
+        </Link>
 
         <div className="relative flex items-center w-full lg:w-1/3">
           <input

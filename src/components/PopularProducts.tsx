@@ -1,5 +1,4 @@
 "use client";
-import { urlFor } from "@/lib/sanity.client";
 import React from "react";
 import Product from "./Product";
 import { ProductInterface } from "@/interfaces/products";
