@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import "./globals.css";
+import AppContext from "@/context/AppContext";
 
 export const metadata = {
   title: "Paw Friends",
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        <main className="px-[20px] lg:px-[150px]">{children}</main>
+        <main className="px-[20px] lg:px-[150px]">
+          <AppContext>{children}</AppContext>
+        </main>
       </body>
     </html>
   );

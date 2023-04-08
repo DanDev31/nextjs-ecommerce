@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { HiStar, HiOutlineStar } from "react-icons/hi";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import Link from "next/link";
+import { useAppContext } from "@/context/AppContext";
 
 interface ProductProps {
   _id?: string;
@@ -39,6 +40,8 @@ const starsData = [
 const Product = ({ _id, name, image, price, category }: ProductProps) => {
   const [stars, setStars] = useState(starsData);
   const [favorite, setFavorite] = useState<boolean>(false);
+
+  const {} = useAppContext();
 
   const handleRating = (index: number) => {
     setStars((prev) => {
@@ -99,9 +102,6 @@ const Product = ({ _id, name, image, price, category }: ProductProps) => {
         <h4 className="font-semibold">{name}</h4>
         <span className="text-xl">$ {price}</span>
       </div>
-      <button className="outline-none rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 mx-auto duration-200 w-full">
-        Add
-      </button>
     </div>
   );
 };

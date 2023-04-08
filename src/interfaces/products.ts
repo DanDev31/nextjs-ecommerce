@@ -5,4 +5,5 @@ export interface ProductInterface{
     image:any;
     price:number;
     category:string;
+    quantity:number | 1;
 }

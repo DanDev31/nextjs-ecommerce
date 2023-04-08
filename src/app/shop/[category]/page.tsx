@@ -9,7 +9,7 @@ type Params = {
   };
 };
 
-const Shop = async ({ params: { category } }: Params) => {
+const ShopPage = async ({ params: { category } }: Params) => {
   const products = await getProductsByCategory(category);
   return (
     <section className="py-7">
@@ -24,4 +24,4 @@ const Shop = async ({ params: { category } }: Params) => {
   );
 };
 
-export default Shop;
+export default ShopPage;

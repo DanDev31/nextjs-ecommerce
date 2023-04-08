@@ -6,6 +6,7 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { TfiRulerAlt } from "react-icons/tfi";
 import { TbWeight } from "react-icons/tb";
 import { HiOutlineSquare3Stack3D } from "react-icons/hi2";
+import { useAppContext } from "@/context/AppContext";
 
 interface ProductDetailProps {
   product: ProductInterface;
@@ -25,11 +26,22 @@ const componentTags = [
 ];
 
 const ProductDetail = ({ product }: ProductDetailProps) => {
-  const [counter, setCounter] = useState<number>(1);
+  const [quantity, setQuantity] = useState<number>(1);
   const [tags, setTags] = useState(componentTags);
   const [component, setComponent] = useState<string>("Description");
 
   const { name, image, description, price, category } = product;
+  const { dispatch } = useAppContext();
+
+  const handleAddToCart = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        product,
+        quantity,
+      },
+    });
+  };
 
   const handleSwitchComponent = (index: number) => {
     setTags((prev) => {
@@ -54,26 +66,29 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       </div>
 
       <div className="space-y-6">
-        <h2 className="text-2xl text-gray-600">{name}</h2>
+        <header>
+          <h2 className="text-2xl text-gray-600">{name}</h2>
+          <span className="text-xs text-gray-500">Category: {category}</span>
+        </header>
 
         <p className="text-xs font-medium text-gray-400 leading-5">
           {description}
         </p>
 
-        <span className="block font-semibold text-2xl">$ {price}</span>
+        <span className="block font-semibold text-3xl">$ {price}</span>
 
         <div className="flex items-center gap-1">
           <span className="text-xs font-medium text-gray-400">Quantity:</span>
           <div className="border border-gray-300 rounded-lg flex h-10">
             <div className="border-r border-gray-400 w-[40px] flex items-center justify-center">
-              <span>{counter}</span>
+              <span>{quantity}</span>
             </div>
             <div className="py-1 px-2 [&>*]:cursor-pointer">
-              <IoIosArrowUp onClick={() => setCounter((prev) => prev + 1)} />
+              <IoIosArrowUp onClick={() => setQuantity((prev) => prev + 1)} />
               <IoIosArrowDown
                 onClick={
-                  counter !== 0
-                    ? () => setCounter((prev) => prev - 1)
+                  quantity !== 1
+                    ? () => setQuantity((prev) => prev - 1)
                     : undefined
                 }
               />
@@ -81,25 +96,33 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           </div>
         </div>
 
-        <button className="outline-none rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 mx-auto duration-200 w-full lg:w-1/2">
+        <button
+          className="outline-none rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white 
+        font-medium py-2 px-4 mx-auto duration-200 w-full"
+          onClick={() => handleAddToCart()}
+        >
           Add to cart
         </button>
 
-        <div className="grid grid-cols-2">
-          {tags.map((tag, i) => (
-            <div
-              key={i}
-              className={`border-t border-l border-r ${
-                tag.state ? "" : "border-b"
-              } border-gray-200 py-1 text-center cursor-pointer text-sm text-gray-500`}
-              onClick={() => handleSwitchComponent(i)}
-            >
-              <span>{tag.title}</span>
+        <div>
+          <div className="grid grid-cols-2">
+            {tags.map((tag, i) => (
+              <div
+                key={i}
+                className={`border-t border-l border-r ${
+                  tag.state ? "" : "border-b"
+                } border-gray-200 py-1 text-center cursor-pointer text-sm text-gray-500`}
+                onClick={() => handleSwitchComponent(i)}
+              >
+                <span>{tag.title}</span>
+              </div>
+            ))}
+          </div>
+          <div className="text-xs text-gray-400 border-b border-r border-l border-gray-200">
+            <div className="p-5">
+              {component === "Description" ? <Description /> : <Details />}
             </div>
-          ))}
-        </div>
-        <div className="text-xs text-gray-400 py-3">
-          {component === "Description" ? <Description /> : <Details />}
+          </div>
         </div>
       </div>
     </div>

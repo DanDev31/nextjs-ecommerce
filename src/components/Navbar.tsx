@@ -26,7 +26,9 @@ const Navbar = () => {
 
         <div className="flex gap-2 [&>*]:cursor-pointer text-lg">
           <FaUserAlt />
-          <ImCart />
+          <Link href="/cart">
+            <ImCart />
+          </Link>
         </div>
       </div>
 
