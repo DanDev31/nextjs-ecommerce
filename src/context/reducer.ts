@@ -1,3 +1,4 @@
+import product from "../../black-duck/schemas/product";
 import { InitialState } from "./AppContext";
 
 export const reducer = (state:InitialState, action:{type:string, payload:any}):InitialState => {
@@ -72,8 +73,12 @@ export const reducer = (state:InitialState, action:{type:string, payload:any}):I
                 cart:decrementQuantity
              }
          case "REMOVE_FROM_CART":
+            const foundItem = state.cart.find(product => product._id === action.payload.id);
             const removeItems = state.cart.filter(product => product._id !== action.payload.id);
-            state.total = state.cart.reduce((acumulator, current) => acumulator + (current.price * current.quantity) ,0)
+            if(foundItem){
+                state.total = state.total - foundItem?.price;
+            }
+            state.totalProducts = state.totalProducts - 1;
             return {
                 ...state,
                 cart:removeItems

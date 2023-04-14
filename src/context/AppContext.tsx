@@ -23,10 +23,7 @@ type ContextType = {
   state: InitialState;
   dispatch: React.Dispatch<{
     type: string;
-    payload: {
-      product: ProductInterface;
-      quantity: number;
-    };
+    payload: any;
   }>;
 };
 

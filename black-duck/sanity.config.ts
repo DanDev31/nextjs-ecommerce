@@ -12,6 +12,7 @@ export default defineConfig({
 
   projectId: 'jay4397q',
   dataset: 'production',
+  
 
   plugins: [deskTool(), visionTool(), ...(isDev ? devOnlyPlugins : [])],
 

@@ -20,10 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <main className="px-[20px] lg:px-[150px]">
-          <AppContext>{children}</AppContext>
-        </main>
+        <AppContext>
+          <Navbar />
+          <main className="px-[20px] lg:px-[150px]">{children}</main>
+        </AppContext>
       </body>
     </html>
   );

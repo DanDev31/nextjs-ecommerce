@@ -41,8 +41,6 @@ const Product = ({ _id, name, image, price, category }: ProductProps) => {
   const [stars, setStars] = useState(starsData);
   const [favorite, setFavorite] = useState<boolean>(false);
 
-  const {} = useAppContext();
-
   const handleRating = (index: number) => {
     setStars((prev) => {
       return prev.map((e) => {

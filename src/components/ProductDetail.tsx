@@ -30,8 +30,18 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   const [tags, setTags] = useState(componentTags);
   const [component, setComponent] = useState<string>("Description");
 
-  const { name, image, description, price, category } = product;
+  const { _id, name, image, description, price, category } = product;
   const { dispatch } = useAppContext();
+
+  const handleIncrementQuantity = () => {
+    setQuantity((prev) => prev + 1);
+    dispatch({ type: "INCREMENT_QUANTITY", payload: { id: _id } });
+  };
+
+  const handleDecrementtQuantity = () => {
+    setQuantity((prev) => prev - 1);
+    dispatch({ type: "DECREMENT_QUANTITY", payload: { id: _id } });
+  };
 
   const handleAddToCart = () => {
     dispatch({
@@ -84,12 +94,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               <span>{quantity}</span>
             </div>
             <div className="py-1 px-2 [&>*]:cursor-pointer">
-              <IoIosArrowUp onClick={() => setQuantity((prev) => prev + 1)} />
+              <IoIosArrowUp onClick={() => handleIncrementQuantity()} />
               <IoIosArrowDown
                 onClick={
-                  quantity !== 1
-                    ? () => setQuantity((prev) => prev - 1)
-                    : undefined
+                  quantity !== 1 ? () => handleDecrementtQuantity() : undefined
                 }
               />
             </div>
