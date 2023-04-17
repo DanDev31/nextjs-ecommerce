@@ -1,6 +1,4 @@
-import Image from "next/image";
 import React from "react";
-import shape from "../../../public/assets/shape.svg";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (

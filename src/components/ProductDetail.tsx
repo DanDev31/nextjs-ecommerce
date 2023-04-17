@@ -69,6 +69,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       });
     });
   };
+
   return (
     <div className="grid grid-cols-1 gap-5 lg:grid-cols-[3fr_2fr] lg:px-[150px]">
       <div className="bg-gray-200 rounded-xl mx-auto p-3 max-w-[600px]">

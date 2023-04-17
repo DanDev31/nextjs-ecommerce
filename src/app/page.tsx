@@ -4,7 +4,7 @@ import PopularProducts from "@/components/PopularProducts";
 import SelectPet from "@/components/SelectPet";
 import { client } from "@/lib/sanity.client";
 
-export default async function Home() {
+export default async function HomePage() {
   const products = await getData();
   return (
     <>

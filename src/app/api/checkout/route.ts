@@ -16,46 +16,18 @@ export async function POST(request:NextRequest, response:any) {
 
   const { cart } = await request.json();
 
-  // const params = {
-  //   line_items: cart.map((item:ProductInterface) => {
-  //     // const img = item.image[0].asset._ref;
-  //     // const newImage = img.replace('image-', 'https://cdn.sanity.io/images/vfxfwnaw/production/').replace('-webp', '.webp');
-
-  //     return {
-  //       price_data: { 
-  //         currency: 'usd',
-  //         product_data: { 
-  //           name: item.name,
-  //           // images: [newImage],
-  //         },
-  //         unit_amount: item.price * 100,
-  //       },
-  //       adjustable_quantity: {
-  //         enabled:true,
-  //         minimum: 1,
-  //       },
-  //       quantity: item.quantity
-  //     }
-  //   }),
-  //   success_url: `${request.nextUrl.origin}/success`,
-  //   cancel_url: `${request.nextUrl.origin}/canceled`,
-  // }
-
-  // const session = await stripe.checkout.sessions.create(params)
-
-
     const session = await stripe.checkout.sessions.create({
-      
+      mode: 'payment',
+      payment_method_types:["card"],
       line_items: cart.map((item:ProductInterface) => {
-        // const img = item.image[0].asset._ref;
-        // const newImage = img.replace('image-', 'https://cdn.sanity.io/images/vfxfwnaw/production/').replace('-webp', '.webp');
-  
+        const img = item.image.asset._ref;
+        
         return {
           price_data: { 
             currency: 'usd',
             product_data: { 
               name: item.name,
-              // images: [newImage],
+              images: [urlFor(img).url()],
             },
             unit_amount: item.price * 100,
           },
@@ -66,7 +38,6 @@ export async function POST(request:NextRequest, response:any) {
           quantity: item.quantity
         }
       }),
-      mode: 'payment',
       success_url: `${request.nextUrl.origin}/success`,
       cancel_url: `${request.nextUrl.origin}/canceled`,
     });

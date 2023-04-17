@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { HiStar, HiOutlineStar } from "react-icons/hi";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import Link from "next/link";
-import { useAppContext } from "@/context/AppContext";
 
 interface ProductProps {
   _id?: string;
@@ -58,8 +57,6 @@ const Product = ({ _id, name, image, price, category }: ProductProps) => {
       });
     });
   };
-
-  const handleFavorite = () => {};
 
   return (
     <div className="overflow-hidden space-y-2 flex flex-col justify-between h-full relative">

@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
+import Providers from "@/components/Providers";
+import Footer from "@/components/Footer";
+
 import "./globals.css";
-import AppContext from "@/context/AppContext";
 
 export const metadata = {
   title: "Paw Friends",
@@ -20,10 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AppContext>
+        <Providers>
           <Navbar />
           <main className="px-[20px] lg:px-[150px]">{children}</main>
-        </AppContext>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

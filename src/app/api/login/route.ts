@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     });
 
     const token = signJWT({name:user.name, email:user.email});
-    console.log("token>>>>>>>>>>>>", token)
+  
     const headers = verifyToken();
 
     const authenticatedUser = {

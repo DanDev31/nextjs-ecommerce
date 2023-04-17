@@ -1,36 +1,46 @@
 "use client";
+import { useSession, signIn, signOut } from "next-auth/react";
 import useForm from "@/hooks/useForm";
 import Link from "next/link";
 
 import { FcGoogle } from "react-icons/fc";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Spinner from "../Spinner";
 
 const Login = () => {
   const { values, handleChange, resetValues } = useForm({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState<boolean>();
+  const [error, setError] = useState<boolean>();
 
-  const makeRequest = async () => {
-    try {
-      //   const user = await fetch("http://localhost:3000/api/user", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(values),
-      //   });
-      //   const data = user.json();
-      //   console.log(data);
-    } catch (error) {
-      console.log(error);
+  const router = useRouter();
+
+  const login = async () => {
+    setLoading(true);
+    const response = await signIn("credentials", {
+      redirect: false,
+      email: values.email,
+      password: values.password,
+    });
+
+    if (response && response.ok) {
+      setLoading(false);
+      router.back();
+    } else {
+      setLoading(false);
+      setError(true);
     }
   };
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    makeRequest();
-    console.log();
+    login();
   };
+
+  const googleAuth = () => {};
 
   return (
     <form
@@ -49,6 +59,12 @@ const Login = () => {
           </Link>
         </h6>
       </header>
+
+      {error && (
+        <span className="block bg-red-200 py-1 px-2 text-red-500 text-xs text-center">
+          Email or password invalid
+        </span>
+      )}
 
       <div className="flex flex-col gap-1">
         <label className="text-xs font-semibold">Email address:</label>
@@ -71,23 +87,41 @@ const Login = () => {
         />
       </div>
 
-      <button
-        type="submit"
-        className="bg-indigo-600 hover:bg-indigo-700 duration-150 rounded-sm text-white font-semibold text-xs uppercase text-center py-3 w-full"
-      >
-        Login
-      </button>
+      {loading ? (
+        <div className="w-full flex justify-center items-center">
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          <button
+            type="submit"
+            className="bg-indigo-600 hover:bg-indigo-700 duration-150 rounded-sm text-white font-semibold text-xs uppercase text-center py-3 w-full"
+          >
+            Login
+          </button>
 
-      <div className="grid grid-cols-3 place-items-center text-xs text-gray-300 w-full relative">
-        <span className="bg-gray-300 w-full h-[1px]"></span>
-        <span>or login with</span>
-        <span className="bg-gray-300 w-full h-[1px]"></span>
-      </div>
+          <div className="grid grid-cols-3 place-items-center text-xs text-gray-300 w-full relative">
+            <span className="bg-gray-300 w-full h-[1px]"></span>
+            <span>or login with</span>
+            <span className="bg-gray-300 w-full h-[1px]"></span>
+          </div>
 
-      <button className="border-2 border-orange-600 hover:bg-orange-50 duration-150 rounded-sm bg-white flex items-center justify-center gap-2 py-2 w-full">
-        <FcGoogle />
-        <span className="font-semibold text-sm text-orange-600">Google</span>
-      </button>
+          <button
+            type="button"
+            className="border-2 border-orange-600 hover:bg-orange-50 duration-150 rounded-sm bg-white flex items-center justify-center gap-2 py-2 w-full"
+            onClick={() =>
+              signIn("google", {
+                callbackUrl: "/",
+              })
+            }
+          >
+            <FcGoogle />
+            <span className="font-semibold text-sm text-orange-600">
+              Google
+            </span>
+          </button>
+        </>
+      )}
     </form>
   );
 };
