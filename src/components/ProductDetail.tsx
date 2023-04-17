@@ -106,7 +106,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         </div>
 
         <button
-          className="outline-none rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white 
+          className="outline-none rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white
         font-medium py-2 px-4 mx-auto duration-200 w-full"
           onClick={() => handleAddToCart()}
         >
@@ -140,7 +140,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
 export default ProductDetail;
 
-export const Description = () => {
+const Description = () => {
   return (
     <>
       <p>
@@ -150,7 +150,7 @@ export const Description = () => {
   );
 };
 
-export const Details = () => {
+const Details = () => {
   return (
     <>
       <ul className="space-y-3">
