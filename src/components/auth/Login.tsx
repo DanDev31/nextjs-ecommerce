@@ -40,8 +40,6 @@ const Login = () => {
     login();
   };
 
-  const googleAuth = () => {};
-
   return (
     <form
       className="shadow-lg p-5 space-y-4 min-w-[320px] bg-white"

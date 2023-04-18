@@ -24,7 +24,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Navbar />
-          <main className="px-[20px] lg:px-[150px]">{children}</main>
+          <main className="px-[20px] lg:px-[150px] grow">{children}</main>
           <Footer />
         </Providers>
       </body>

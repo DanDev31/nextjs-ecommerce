@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { BiSearch } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
@@ -13,16 +13,24 @@ import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>("");
   const {
     state: { totalProducts },
   } = useAppContext();
 
   const path = usePathname();
   const { data: session } = useSession();
+  const router = useRouter();
 
+  const handleSearch = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    router.push(`/shop/${searchValue}`);
+  };
   return (
     <>
-      {path.includes("authentication") ? (
+      {path.includes("authentication") ||
+      path.includes("canceled") ||
+      path.includes("success") ? (
         <header className="flex items-center justify-between gap-5 bg-indigo-800 px-4 lg:px-10 py-4 text-white">
           <Link href="/" className="flex items-center gap-1 text-xl">
             <span className="font-bold">PawFriends</span>
@@ -30,21 +38,27 @@ const Navbar = () => {
           </Link>
         </header>
       ) : (
-        <nav className="bg-transparent sticky top-0 shadow-sm z-30">
+        <nav className="bg-transparent sticky top-0 shadow-sm z-50">
           <div className="flex items-center justify-between gap-5 bg-indigo-800 px-3 lg:px-10 py-4 text-white">
             <Link href="/" className="flex items-center gap-1 text-xl">
               <span className="font-bold hidden md:block">PawFriends</span>
               <TbPawFilled className="rotate-45 text-2xl" />
             </Link>
 
-            <div className="relative flex items-center w-full lg:w-1/3">
+            <form
+              className="relative flex items-center w-full lg:w-1/3"
+              onSubmit={handleSearch}
+            >
               <input
                 className="border border-gray-200 text-sm py-[5px] pl-6 pr-2 rounded-xl text-gray-500 w-full placeholder:text-xs"
                 type="text"
                 placeholder="What are you looking for?"
+                onChange={(e) => setSearchValue(e.target.value)}
               />
-              <BiSearch className="absolute left-1 text-slate-900" />
-            </div>
+              <button type="submit" className="absolute left-1 text-slate-900">
+                <BiSearch />
+              </button>
+            </form>
 
             <div className="flex items-center justify-end gap-6 [&>*]:cursor-pointer min-w-[100px] leading-4">
               <Link href="/cart" className="relative">

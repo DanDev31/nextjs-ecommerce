@@ -11,11 +11,16 @@ export type InitialState = {
   totalProducts: number;
 };
 
-const initialState: InitialState = {
-  cart: [],
-  total: Number((0).toFixed(2)),
-  totalProducts: 0,
-};
+const storagedState = JSON.parse(localStorage.getItem("cart") || "{}");
+
+const initialState: InitialState =
+  JSON.stringify(storagedState) === "{}"
+    ? {
+        cart: [],
+        total: 0,
+        totalProducts: 0,
+      }
+    : storagedState;
 
 // Types for Context
 

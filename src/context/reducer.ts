@@ -1,4 +1,3 @@
-import product from "../../black-duck/schemas/product";
 import { InitialState } from "./AppContext";
 
 export const reducer = (state:InitialState, action:{type:string, payload:any}):InitialState => {
@@ -18,6 +17,7 @@ export const reducer = (state:InitialState, action:{type:string, payload:any}):I
                         return product
                     }
                 })
+                localStorage.setItem("cart", JSON.stringify({...state, updateProducts}));
                 return {
                     ...state,
                     cart:updateProducts
@@ -27,6 +27,7 @@ export const reducer = (state:InitialState, action:{type:string, payload:any}):I
                     ...action.payload.product,
                     quantity:action.payload.quantity
                 }
+                localStorage.setItem("cart", JSON.stringify({...state, cart:[...state.cart, product]}));
                 return {
                     ...state,
                     cart:[...state.cart, product]
@@ -45,7 +46,7 @@ export const reducer = (state:InitialState, action:{type:string, payload:any}):I
                     return product
                 }
              });
-             
+             localStorage.setItem("cart", JSON.stringify({...state, cart:incrementQuantity}));
              return {
                 ...state,
                 cart:incrementQuantity
@@ -67,7 +68,7 @@ export const reducer = (state:InitialState, action:{type:string, payload:any}):I
                     return product
                 }
              });
-             
+             localStorage.setItem("cart", JSON.stringify({...state, cart:decrementQuantity}));
              return {
                 ...state,
                 cart:decrementQuantity
@@ -76,9 +77,10 @@ export const reducer = (state:InitialState, action:{type:string, payload:any}):I
             const foundItem = state.cart.find(product => product._id === action.payload.id);
             const removeItems = state.cart.filter(product => product._id !== action.payload.id);
             if(foundItem){
-                state.total = state.total - foundItem?.price;
+                state.total = state.total - (foundItem?.price * foundItem.quantity);
             }
             state.totalProducts = state.totalProducts - 1;
+            localStorage.setItem("cart", JSON.stringify({...state, cart:removeItems}));
             return {
                 ...state,
                 cart:removeItems

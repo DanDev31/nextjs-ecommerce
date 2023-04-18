@@ -6,7 +6,7 @@ import { BsFillSendFill } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-950 text-white px-12 lg:px-[200px] space-y-12">
+    <footer className="bg-blue-950 text-white px-12 lg:px-[200px] space-y-6">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 text-center md:text-start pt-10">
         <div className="space-y-6 border-b border-gray-400 pb-4 md:border-0 md:pb-0">
           <div>
