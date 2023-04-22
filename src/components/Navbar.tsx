@@ -108,10 +108,7 @@ const Navbar = () => {
                 <Link href="/shop/cats">Cats</Link>
               </li>
               <li>
-                <Link href="#">About</Link>
-              </li>
-              <li>
-                <Link href="#">Contact</Link>
+                <Link href="/about">About</Link>
               </li>
             </ul>
           </div>

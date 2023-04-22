@@ -23,7 +23,7 @@ const Register = () => {
   const onRegister = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/api/register", {
+      const response = await fetch("/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,8 +36,10 @@ const Register = () => {
           email: values.email,
           password: values.password,
         });
+        console.log("entro");
         setLoading(false);
-        router.push("/");
+        // router.replace("/");
+        window.location.href = "/";
       } else {
         setError(true);
         setLoading(false);
@@ -101,7 +103,7 @@ const Register = () => {
         <label className="text-xs font-semibold">Password:</label>
         <input
           type="password"
-          placeholder="youremail@example.com"
+          placeholder="Password"
           name="password"
           onChange={(e) => handleChange(e)}
           className="outline-none border border-gray-300 rounded-sm p-2 text-gray-400 placeholder:text-gray-300 placeholder:font-medium placeholder:text-xs focus:border-gray-500 text-sm"

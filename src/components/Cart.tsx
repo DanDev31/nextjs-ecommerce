@@ -21,16 +21,13 @@ const Cart = () => {
 
     if (session) {
       try {
-        const stripeResponse = await fetch(
-          "http://localhost:3000/api/checkout",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ cart }),
-          }
-        );
+        const stripeResponse = await fetch("/api/checkout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ cart }),
+        });
 
         const data = await stripeResponse.json();
 
