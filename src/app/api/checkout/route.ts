@@ -29,7 +29,7 @@ export async function POST(request:NextRequest, response:any) {
               name: item.name,
               images: [urlFor(img).url()],
             },
-            unit_amount: item.price * 10,
+            unit_amount: item.price * 100,
           },
           adjustable_quantity: {
             enabled:true,

@@ -1,8 +1,14 @@
 "use client";
 
-import { ProductInterface } from "@/interfaces/products";
-import React, { createContext, useContext, useReducer } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from "react";
 import { reducer } from "./reducer";
+import { ProductInterface } from "@/interfaces/products";
 
 // Types for Reducer State
 export type InitialState = {
@@ -11,16 +17,11 @@ export type InitialState = {
   totalProducts: number;
 };
 
-const storagedState = JSON.parse(localStorage.getItem("cart") || "{}");
-
-const initialState: InitialState =
-  JSON.stringify(storagedState) === "{}"
-    ? {
-        cart: [],
-        total: 0,
-        totalProducts: 0,
-      }
-    : storagedState;
+const initialState: InitialState = {
+  cart: [],
+  total: 0,
+  totalProducts: 0,
+};
 
 // Types for Context
 
@@ -30,6 +31,7 @@ type ContextType = {
     type: string;
     payload: any;
   }>;
+  loading: boolean;
 };
 
 const Context = createContext<ContextType>({
@@ -39,12 +41,33 @@ const Context = createContext<ContextType>({
     totalProducts: 0,
   },
   dispatch: () => {},
+  loading: false,
 });
 
 const AppContext = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const cartData = localStorage.getItem("cart");
+    if (cartData) {
+      dispatch({
+        type: "LOAD_DATA",
+        payload: JSON.parse(localStorage.getItem("cart")!),
+      });
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state));
+  }, [state]);
+
   return (
-    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+    <Context.Provider value={{ state, dispatch, loading }}>
+      {children}
+    </Context.Provider>
   );
 };
 

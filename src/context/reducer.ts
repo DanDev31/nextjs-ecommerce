@@ -1,7 +1,15 @@
 import { InitialState } from "./AppContext";
 
+
 export const reducer = (state:InitialState, action:{type:string, payload:any}):InitialState => {
     switch(action.type){
+        case "LOAD_DATA":
+            return {
+                ...state,
+                cart:action.payload.cart,
+                total:action.payload.total,
+                totalProducts:action.payload.totalProducts
+            }
         case "ADD_TO_CART":
             const cartItem = state.cart.find(item => item._id === action.payload.product._id);
             state.total = state.total + (action.payload.product.price * action.payload.quantity);

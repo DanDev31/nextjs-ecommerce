@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 const Cart = () => {
   const {
     state: { cart, total },
+    loading,
   } = useAppContext();
 
   const { data: session } = useSession();
@@ -42,6 +43,8 @@ const Cart = () => {
     }
   };
 
+  console.log("loading", loading);
+
   return (
     <>
       {cart && cart.length > 0 ? (
@@ -64,7 +67,7 @@ const Cart = () => {
               <ul className="space-y-2 border-b-2 border-gray-400 py-2 text-sm">
                 <li className="flex items-center justify-between">
                   <h6 className="text-gray-500">Subtotal:</h6>
-                  <span>{total}</span>
+                  <span>{total.toFixed(2)}</span>
                 </li>
                 <li className="flex items-center justify-between">
                   <h6 className="text-gray-500">Shipping:</h6>
@@ -77,7 +80,7 @@ const Cart = () => {
               </ul>
               <div className="flex items-center justify-between pt-2">
                 <h5 className="font-semibold">Total:</h5>
-                <span>{total}</span>
+                <span>{total.toFixed(2)}</span>
               </div>
               <button
                 className="bg-indigo-900 text-white font-semibold uppercase text-center py-2 mt-3 w-full"
