@@ -10,8 +10,8 @@ const AboutPage = () => {
           <Image src={aboutImage} alt="About image" />
         </div>
         <div>
-          <h2 className="font-black text-[52px] text-slate-800">
-            We love pets <br /> and have the best <br /> for make them
+          <h2 className="font-black text-[52px] text-slate-800 border-b border-gray-300 pb-3">
+            We love pets <br /> so we have the best <br /> for make them
             <span className="text-orange-400"> HAPPY!!</span>
           </h2>
           <p className="pt-5 text-sm tracking-wide text-gray-500">
