@@ -2,7 +2,6 @@
 import { signIn } from "next-auth/react";
 import useForm from "@/hooks/useForm";
 import Link from "next/link";
-
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import Spinner from "../Spinner";
@@ -23,13 +22,14 @@ const Login = () => {
       password: values.password,
     });
 
-    if (response && response.ok) {
+    if (response && response.ok && !response.error) {
       setLoading(false);
       window.history.back();
     } else {
       setLoading(false);
       setError(true);
     }
+    resetValues();
   };
 
   const onSubmit = (e: React.SyntheticEvent) => {

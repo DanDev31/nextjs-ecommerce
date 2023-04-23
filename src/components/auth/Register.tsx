@@ -30,16 +30,15 @@ const Register = () => {
         },
         body: JSON.stringify(values),
       });
-
-      if (response.ok) {
-        signIn("credentials", {
+      console.log("res>>>>>", response);
+      if (response.ok && response.status === 200) {
+        await signIn("credentials", {
+          redirect: false,
           email: values.email,
           password: values.password,
         });
-        console.log("entro");
         setLoading(false);
-        // router.replace("/");
-        window.location.href = "/";
+        router.replace("/");
       } else {
         setError(true);
         setLoading(false);
