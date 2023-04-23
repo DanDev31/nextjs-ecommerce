@@ -30,7 +30,7 @@ const Register = () => {
         },
         body: JSON.stringify(values),
       });
-      console.log("res>>>>>", response);
+
       if (response.ok && response.status === 200) {
         await signIn("credentials", {
           redirect: false,
@@ -46,6 +46,7 @@ const Register = () => {
     } catch (error) {
       console.log(error);
     }
+    resetValues();
   };
 
   const onSubmit = (e: React.SyntheticEvent) => {
