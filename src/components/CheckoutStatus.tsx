@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import success from "../../public/assets/checked.png";
 import error from "../../public/assets/cancel.png";
 import { useSession } from "next-auth/react";
@@ -17,8 +17,7 @@ const CheckoutStatus = ({ status }: CheckoutStatusProps) => {
       <>
         <p>
           We are delighted to inform you that your payment has been successfully
-          processed. <br /> Your transaction ID is AC-
-          {Math.floor(Math.random() * 1000000000)}.
+          processed. <br /> Your transaction ID is AC-234144576712.
           <br />
           <br />
           Please keep this for your records in case you need to refer to it in
@@ -40,6 +39,13 @@ const CheckoutStatus = ({ status }: CheckoutStatusProps) => {
       </>
     );
   }
+
+  useEffect(() => {
+    if (status === "success") {
+      localStorage.removeItem("cart");
+    }
+  }, []);
+
   return (
     <section className="grid place-content-center">
       <div className="bg-gray-50 rounded-xl shadow-md p-5 space-y-3 md:w-[70%] lg:w-[60%] mx-auto mt-8 mb-5 max-h-[400px] overflow-y-auto">
@@ -54,7 +60,7 @@ const CheckoutStatus = ({ status }: CheckoutStatusProps) => {
 
         <div className="text-sm space-y-3">
           <h4 className="font-medium">Dear {session?.user?.name},</h4>
-          <p>{content}</p>
+          <div>{content}</div>
           <div>Best regards,</div>
           <p className="font-semibold">PawFriends.</p>
         </div>

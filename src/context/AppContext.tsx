@@ -31,7 +31,6 @@ type ContextType = {
     type: string;
     payload: any;
   }>;
-  loading: boolean;
 };
 
 const Context = createContext<ContextType>({
@@ -41,22 +40,18 @@ const Context = createContext<ContextType>({
     totalProducts: 0,
   },
   dispatch: () => {},
-  loading: false,
 });
 
 const AppContext = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true);
     const cartData = localStorage.getItem("cart");
     if (cartData) {
       dispatch({
         type: "LOAD_DATA",
         payload: JSON.parse(localStorage.getItem("cart")!),
       });
-      setLoading(false);
     }
   }, []);
 
@@ -65,9 +60,7 @@ const AppContext = ({ children }: { children: React.ReactNode }) => {
   }, [state]);
 
   return (
-    <Context.Provider value={{ state, dispatch, loading }}>
-      {children}
-    </Context.Provider>
+    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
   );
 };
 

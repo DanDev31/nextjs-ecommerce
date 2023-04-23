@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 const Cart = () => {
   const {
     state: { cart, total },
-    loading,
   } = useAppContext();
 
   const { data: session } = useSession();
@@ -30,7 +29,6 @@ const Cart = () => {
         });
 
         const data = await stripeResponse.json();
-
         stripe?.redirectToCheckout({ sessionId: data.session.id });
       } catch (error) {
         console.log(error);
@@ -39,8 +37,6 @@ const Cart = () => {
       router.push("/authentication/login");
     }
   };
-
-  console.log("loading", loading);
 
   return (
     <>

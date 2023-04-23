@@ -1,10 +1,9 @@
 "use client";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import useForm from "@/hooks/useForm";
 import Link from "next/link";
 
 import { FcGoogle } from "react-icons/fc";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Spinner from "../Spinner";
 
@@ -16,8 +15,6 @@ const Login = () => {
   const [loading, setLoading] = useState<boolean>();
   const [error, setError] = useState<boolean>();
 
-  const router = useRouter();
-
   const login = async () => {
     setLoading(true);
     const response = await signIn("credentials", {
@@ -28,7 +25,7 @@ const Login = () => {
 
     if (response && response.ok) {
       setLoading(false);
-      router.back();
+      window.history.back();
     } else {
       setLoading(false);
       setError(true);
