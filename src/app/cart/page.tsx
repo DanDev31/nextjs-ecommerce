@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 
 const CartPage = () => {
   return (
-    <section className="py-10">
+    <section className="py-10 animate-fadeInLeft">
       <header className="text-center mb-12 w-full">
         <h2 className="font-semibold text-lg uppercase">Shopping Cart</h2>
       </header>

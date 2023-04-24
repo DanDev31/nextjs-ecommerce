@@ -19,7 +19,7 @@ const ShopPage = async ({ params: { category } }: Params) => {
   }
 
   return (
-    <section className="py-7">
+    <section className="py-7 animate-fadeInLeft">
       <header className="border-b-2 border-gray-300 pb-5 mb-10 text-center w-full">
         <h2 className="font-semibold text-3xl uppercase">{category}</h2>
       </header>

@@ -11,7 +11,7 @@ interface ProductDetailProps {
 const Product = async ({ params: { productId } }: ProductDetailProps) => {
   const product = await getProduct(productId);
   return (
-    <section className="py-10">
+    <section className="py-10 animate-fadeInLeft">
       <ProductDetail product={product[0]} />
     </section>
   );

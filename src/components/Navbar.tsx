@@ -38,7 +38,7 @@ const Navbar = () => {
           </Link>
         </header>
       ) : (
-        <nav className="bg-transparent sticky top-0 shadow-sm z-50">
+        <nav className="bg-transparent sticky top-0 shadow-sm z-50 animate-fadeInTop">
           <div className="flex items-center justify-between gap-5 bg-indigo-800 px-3 lg:px-10 py-4 text-white">
             <Link href="/" className="flex items-center gap-1 text-xl">
               <span className="font-bold hidden md:block">PawFriends</span>

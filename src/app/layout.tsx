@@ -24,7 +24,9 @@ export default function RootLayout({
       <body>
         <Providers>
           <Navbar />
-          <main className="px-[20px] lg:px-[150px] grow">{children}</main>
+          <main className="px-[20px] lg:px-[150px] grow animate-fadeInLeft">
+            {children}
+          </main>
           <Footer />
         </Providers>
       </body>
