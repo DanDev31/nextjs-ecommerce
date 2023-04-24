@@ -7,7 +7,6 @@ import { client } from "@/lib/sanity.client";
 
 const handler = NextAuth({
      providers: [
-
       CredentialsProvider({
         name:"Credentials",
         credentials:{
