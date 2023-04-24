@@ -81,7 +81,11 @@ const Navbar = () => {
                   >
                     <span
                       className="text-gray-800 text-sm "
-                      onClick={() => signOut()}
+                      onClick={() =>
+                        signOut({
+                          callbackUrl: "/",
+                        })
+                      }
                     >
                       Logout
                     </span>
