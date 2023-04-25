@@ -2,7 +2,7 @@
 import { signIn } from "next-auth/react";
 import useForm from "@/hooks/useForm";
 import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import Spinner from "../Spinner";
 import { useRouter } from "next/navigation";
@@ -102,7 +102,7 @@ const Login = () => {
             Login
           </button>
 
-          <div className="grid grid-cols-3 place-items-center text-xs text-gray-300 w-full relative">
+          {/* <div className="grid grid-cols-3 place-items-center text-xs text-gray-300 w-full relative">
             <span className="bg-gray-300 w-full h-[1px]"></span>
             <span>or login with</span>
             <span className="bg-gray-300 w-full h-[1px]"></span>
@@ -117,7 +117,7 @@ const Login = () => {
             <span className="font-semibold text-sm text-orange-600">
               Google
             </span>
-          </button>
+          </button> */}
         </>
       )}
     </form>
