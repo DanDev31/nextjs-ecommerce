@@ -28,7 +28,7 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     signOut({
-      callbackUrl: "/",
+      callbackUrl: process.env.NEXT_PUBLIC_ROOT_URL,
     });
   };
 

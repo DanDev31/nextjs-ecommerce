@@ -42,7 +42,7 @@ const Login = () => {
 
   const googleLogin = () => {
     signIn("google", {
-      callbackUrl: "/",
+      callbackUrl: process.env.NEXT_PUBLIC_ROOT_URL,
     });
   };
 
