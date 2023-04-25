@@ -83,7 +83,7 @@ const Navbar = () => {
                       className="text-gray-800 text-sm "
                       onClick={() =>
                         signOut({
-                          callbackUrl: "/",
+                          callbackUrl: process.env.NEXTAUTH_URL,
                         })
                       }
                     >
