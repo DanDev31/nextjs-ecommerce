@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { BiSearch } from "react-icons/bi";
@@ -26,6 +25,15 @@ const Navbar = () => {
     e.preventDefault();
     router.push(`/shop/${searchValue}`);
   };
+
+  const handleSignOut = () => {
+    signOut({
+      redirect: false,
+    });
+
+    router.push(process.env.NEXT_PUBLIC_ROOT_URL || "");
+  };
+
   return (
     <>
       {path.includes("authentication") ||
@@ -81,11 +89,7 @@ const Navbar = () => {
                   >
                     <span
                       className="text-gray-800 text-sm "
-                      onClick={() =>
-                        signOut({
-                          callbackUrl: process.env.NEXTAUTH_URL,
-                        })
-                      }
+                      onClick={() => handleSignOut()}
                     >
                       Logout
                     </span>

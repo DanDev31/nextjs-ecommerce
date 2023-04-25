@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import Spinner from "../Spinner";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const { values, handleChange, resetValues } = useForm({
@@ -13,6 +14,8 @@ const Login = () => {
   });
   const [loading, setLoading] = useState<boolean>();
   const [error, setError] = useState<boolean>();
+
+  const router = useRouter();
 
   const login = async () => {
     setLoading(true);
@@ -35,6 +38,13 @@ const Login = () => {
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     login();
+  };
+
+  const googleLogin = () => {
+    signIn("google", {
+      redirect: false,
+    });
+    router.push(process.env.NEXT_PUBLIC_ROOT_URL || "");
   };
 
   return (
@@ -104,11 +114,7 @@ const Login = () => {
           <button
             type="button"
             className="border-2 border-orange-600 hover:bg-orange-50 duration-150 rounded-sm bg-white flex items-center justify-center gap-2 py-2 w-full"
-            onClick={() =>
-              signIn("google", {
-                callbackUrl: process.env.NEXTAUTH_URL,
-              })
-            }
+            onClick={() => googleLogin()}
           >
             <FcGoogle />
             <span className="font-semibold text-sm text-orange-600">
