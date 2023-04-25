@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import Spinner from "../Spinner";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const { values, handleChange, resetValues } = useForm({
@@ -44,7 +44,7 @@ const Login = () => {
     signIn("google", {
       redirect: false,
     });
-    router.push(process.env.NEXT_PUBLIC_ROOT_URL || "");
+    router.replace(process.env.NEXT_PUBLIC_ROOT_URL || "");
   };
 
   return (
