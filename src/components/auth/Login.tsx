@@ -40,9 +40,9 @@ const Login = () => {
     login();
   };
 
-  const googleLogin = async () => {
-    await signIn("google");
-  };
+  // const googleLogin = async () => {
+  //   await signIn("google");
+  // };
 
   return (
     <form

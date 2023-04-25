@@ -27,7 +27,8 @@ const Navbar = () => {
   };
 
   const handleSignOut = async () => {
-    await signOut();
+    await signOut({ redirect: false });
+    router.push(process.env.NEXT_PUBLIC_NEXTAUTH_URL || "");
   };
 
   return (
