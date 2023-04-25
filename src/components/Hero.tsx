@@ -26,7 +26,7 @@ const Hero = () => {
   ];
   return (
     <section className="pt-8 pb-12 min-h-[80vh] ">
-      <Slider images={images} autoplay={false} />
+      <Slider images={images} autoplay={true} />
     </section>
   );
 };
