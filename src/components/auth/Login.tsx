@@ -42,8 +42,7 @@ const Login = () => {
 
   const googleLogin = () => {
     signIn("google", {
-      redirect: false,
-      callbackUrl: process.env.NEXT_PUBLIC_ROOT_URL,
+      callbackUrl: "/",
     });
   };
 
