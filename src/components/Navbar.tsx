@@ -26,8 +26,8 @@ const Navbar = () => {
     router.push(`/shop/${searchValue}`);
   };
 
-  const handleSignOut = () => {
-    signOut({
+  const handleSignOut = async () => {
+    await signOut({
       callbackUrl: process.env.NEXT_PUBLIC_ROOT_URL,
     });
   };

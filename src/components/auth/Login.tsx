@@ -40,8 +40,8 @@ const Login = () => {
     login();
   };
 
-  const googleLogin = () => {
-    signIn("google", {
+  const googleLogin = async () => {
+    await signIn("google", {
       callbackUrl: process.env.NEXT_PUBLIC_ROOT_URL,
     });
   };
