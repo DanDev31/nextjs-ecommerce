@@ -27,9 +27,7 @@ const Navbar = () => {
   };
 
   const handleSignOut = async () => {
-    await signOut({
-      callbackUrl: process.env.NEXT_PUBLIC_ROOT_URL,
-    });
+    await signOut();
   };
 
   return (

@@ -36,6 +36,7 @@ const handler = NextAuth({
 
           }
       }),
+
          GoogleProvider({
            clientId: process.env.GOOGLE_CLIENT_ID || "",
            clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
@@ -48,7 +49,7 @@ const handler = NextAuth({
        },
       callbacks:{
         redirect({url, baseUrl}){
-          return baseUrl;
+          return url;
         }
       }
  });
