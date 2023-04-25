@@ -31,7 +31,7 @@ const Navbar = () => {
       redirect: false,
     });
 
-    router.push(process.env.NEXT_PUBLIC_ROOT_URL || "");
+    router.replace(process.env.NEXT_PUBLIC_ROOT_URL || "");
   };
 
   return (
