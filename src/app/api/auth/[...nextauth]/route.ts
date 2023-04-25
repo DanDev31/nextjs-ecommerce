@@ -49,7 +49,7 @@ const handler = NextAuth({
        },
       callbacks:{
         redirect({url, baseUrl}){
-          return url;
+          return baseUrl;
         }
       }
  });
